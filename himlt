@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aerbp // dojyaan</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #58a6ff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            border: 1px solid #30363d;
+            padding: 40px;
+            border-radius: 8px;
+            background: #161b22;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        h1 { color: #f0f6fc; margin-bottom: 10px; }
+        .status-box {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            padding: 10px;
+            border-radius: 4px;
+            background: #0d1117;
+        }
+        .loading { color: #8b949e; }
+        .success { color: #3fb950; }
+        .error { color: #f85149; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>dojyaan.github.io/aerbp</h1>
+        <div id="status" class="status-box loading">Initializing Firebase connection...</div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+        // Your specific Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyATXxHT38WrUbLIcIceg-OpNwuvXlA2bTU",
+            authDomain: "aerbp-82898.firebaseapp.com",
+            projectId: "aerbp-82898",
+            storageBucket: "aerbp-82898.firebasestorage.app",
+            messagingSenderId: "900180834282",
+            appId: "1:900180834282:web:c93a49607bd74bad58a493",
+            measurementId: "G-C16DWJLJTH"
+        };
+
+        const statusEl = document.getElementById('status');
+
+        try {
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            
+            statusEl.innerText = "> Firebase Connected Successfully.";
+            statusEl.className = "status-box success";
+            console.log("Aerbp is live.");
+        } catch (e) {
+            statusEl.innerText = "> Connection Error: " + e.message;
+            statusEl.className = "status-box error";
+        }
+    </script>
+</body>
+</html>
